@@ -73,8 +73,18 @@
 ```
 tank-battle/
 ├── tank-battle.html   # 游戏主文件（包含 HTML/CSS/JS）
-└── README.md          # 项目文档
+├── README.md          # 项目文档
+└── CHANGELOG.md       # 更新日志
 ```
+
+## 更新日志
+
+详见 [CHANGELOG.md](./CHANGELOG.md)
+
+| 版本 | 日期 | 说明 |
+|------|------|------|
+| v1.1.0 | 2026-05-28 | 修复墙体生成与出生点重叠 bug，新增版本号显示 |
+| v1.0.0 | 2026-05-28 | 初始版本 |
 
 ## 浏览器兼容性
 
