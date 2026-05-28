@@ -67,6 +67,7 @@
     <span>💀 <span id="score">0</span></span>
     <span>❤️ <span id="lives">3</span></span>
     <span>🎯 <span id="level">1</span></span>
+    <span id="version" style="font-size:12px;color:#888;">v1.1.0</span>
   </div>
   <div id="gameOver">
     <h1 id="overTitle">游戏结束</h1>
@@ -82,6 +83,7 @@ const W = 800, H = 600;
 canvas.width = W; canvas.height = H;
 
 // ─── 游戏状态 ───
+const VERSION = '1.1.0';
 let score = 0, lives = 3, level = 1;
 let gameRunning = true;
 let gameOver = false;
@@ -114,6 +116,8 @@ window.addEventListener('keydown', e => {
 window.addEventListener('keyup', e => { keys[e.key] = false; });
 
 // ─── 墙体生成 ───
+const SPAWN_SAFE_ZONE = { x: 370, y: 470, w: 60, h: 60 }; // 出生点保护区
+
 function generateWalls() {
   walls = [];
   // 边框
@@ -139,7 +143,9 @@ function generateWalls() {
   ];
   const pattern = patterns[Math.floor(Math.random() * patterns.length)];
   pattern.forEach(p => {
-    walls.push({x:p.x, y:p.y, w:20, h:20, hp:2, color:'#c77d3a'});
+    if (!rectCollide({x:p.x, y:p.y, w:20, h:20}, SPAWN_SAFE_ZONE)) {
+      walls.push({x:p.x, y:p.y, w:20, h:20, hp:2, color:'#c77d3a'});
+    }
   });
 }
 
